@@ -25,14 +25,17 @@ class API {
     //POST (check out a number), input {"user_number": "..."}, return {"lease_id": "...", "leased_number": "...", "ttl": ###}
     var response = await http.post(_baseURL + 'lease',
         headers: headers,
-        body: {'user_number': 'TODO: put number here'});
+        body: {
+          'phone': '9703088354',
+          'duration': 300
+        });
 
     print('Response status: ${response.statusCode}');
     Map<String, dynamic> jsonData = json.decode(response.body);
 
-    print('Response body: ${jsonData["lease_id"]}');
-    print('Response body: ${jsonData['leased_number']}');
-    print('Response body: ${jsonData['ttl']}');
+    print('Response body: ${jsonData['leaseToken']}');
+    print('Response body: ${jsonData['phone']}');
+    print('Response body: ${jsonData['duration']}');
   }
 
   void extendLease() {}
